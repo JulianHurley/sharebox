@@ -9,12 +9,22 @@ group :test, :development, :production do
 	gem 'jquery-rails'
 	gem 'turbolinks'
 	gem 'jbuilder', '~> 2.0'
-	gem 'sdoc', '~> 0.4.0',          group: :doc
-	gem 'spring',        group: :development
 	gem 'devise'
 	gem 'haml'
 end
 
-group :test do
+group :test, :development do
+	gem 'rspec-activemodel-mocks' # attempt to get mocks working. delete
 	gem 'rspec-rails'
+	gem 'capybara'
+	gem 'factory_girl_rails'
+	gem 'selenium-webdriver'
+	gem 'database_cleaner'
+end
+group :development do
+	gem 'spring'
+end
+
+group :doc do
+	gem 'sdoc', '~> 0.4.0'
 end
