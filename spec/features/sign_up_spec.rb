@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User signup', js: true, type: :feature do
 
-	def sign_in
+	def sign_up
 		visit '/users/sign_up'
 		fill_in 'user_name', with: 'name'
 		fill_in 'user_email', with: 'myemail@email.com'
@@ -11,8 +11,12 @@ feature 'User signup', js: true, type: :feature do
 		click_button 'Sign up'
 	end
 
+	def sign_out
+	
+	end
+
 	it 'user signs up' do
-		sign_in
+		sign_up
 
 		expect(page).to have_text('Home')
 		expect(page).to have_text('Welcome! You have signed up successfully.')
@@ -20,9 +24,20 @@ feature 'User signup', js: true, type: :feature do
 	end
 
 	it 'user can sign out' do
-		sign_in
+		sign_up
 		click_link 'sign out'
 
 		expect(page).to have_text('Signed out successfully.')
+	end
+
+	it 'user can sign in' do
+		sign_up
+		click_link 'sign out'
+		visit '/users/sign_in'
+		fill_in 'user_email', with: 'myemail@email.com'
+		fill_in 'user_password', with: 'passpass'
+		click_button 'Sign in'
+		
+		expect(page).to have_text('Signed in successfully.')
 	end
 end
