@@ -4,9 +4,10 @@
 
 .login_user_status
 	- if user_signed_in?
-		= current_user.email
-		|
-		= link_to 'Sign out', destroy_user_session_path, method: :delete
+		= current_user.email |
+		= link_to 'Sign out', destroy_user_session_path, method: :delete |
+		= link_to 'Upload File', new_assets_path
+
 	- else
 		.em
 			Not Signed In.
