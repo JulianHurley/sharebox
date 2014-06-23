@@ -1,6 +1,6 @@
 .div
 	.file
-		.br= link_to asset.file_name, asset_path(asset)
+		.br= link_to asset.file_name, download_asset_url(asset)
 		.actions
 			= link_to 'show', asset_path(asset)
 			= link_to 'edit', asset_path(asset)

@@ -1,6 +1,6 @@
 class AssetsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_asset, only: [:show, :edit, :update, :destroy]
+	before_action :set_asset, only: [:get, :show, :edit, :update, :destroy]
 	
 	def new
 		@asset = current_user.assets.new
@@ -22,6 +22,12 @@ class AssetsController < ApplicationController
 
 	def show
 	end
+	def get
+		send_file @asset.uploaded_file.path, type: @asset.uploaded_file_content_type
+
+		rescue ActionController::MissingFile
+			redirect_to assets_url, notice: 'missing file'
+	end
 
 	def edit
 	end
@@ -33,8 +39,17 @@ class AssetsController < ApplicationController
 	end
 
 	private
+		def asset_not_found
+
+			
+		end
+
 		def set_asset
 			@asset = current_user.assets.find(params[:id])
+			
+			rescue ActiveRecord::RecordNotFound
+				flash[:notice] = "resource does not exist"
+				redirect_to assets_url
 		end
 
 		def asset_params

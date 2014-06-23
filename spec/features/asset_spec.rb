@@ -18,4 +18,12 @@ feature 'Asset spec', js: true, type: :feature do
 
 	end
 
+	it 'returns a file not found if the file is missing' do
+		sign_up
+	end
+
+	it 'returns a flash if you attempt to a view a file you don\'t own' do
+	
+	end
+
 end
