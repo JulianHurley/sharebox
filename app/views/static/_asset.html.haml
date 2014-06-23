@@ -1,0 +1,7 @@
+.asset_details
+	.file_name
+		= link_to asset.file_name, download_asset_url(asset)
+	.file_size
+		= asset.uploaded_file_file_size
+	.file_last_updated
+		= asset.uploaded_file_updated_at

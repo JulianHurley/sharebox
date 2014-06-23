@@ -4,11 +4,13 @@
 
 .login_user_status
 	- if user_signed_in?
-		.br= current_user.email
-		.br= current_user.name
-		.br= link_to 'sign out', destroy_user_session_path, method: :delete |
-		.br= link_to 'Upload File', new_asset_path
-		= link_to 'My Assets', '/assets'
+		#menu
+			%ul#top_menu
+				%li= current_user.name
+				%li= link_to 'Upload', new_asset_path
+				%li= link_to 'sign out', destroy_user_session_path, method: :delete
+				%li= link_to 'My assets', assets_path
+				%li= link_to 'Sign Out'
 	- else
 		.em
 			Not Signed In.

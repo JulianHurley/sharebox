@@ -1,1 +1,16 @@
-Home
+- unless user_signed_in?
+	.h1 Welcome to share box
+	.p The file sharing web application you can't ignore
+- else
+
+
+	.asset_list_header
+		.file_name_header 
+			File Name
+		.file_size_header
+			Size
+		.file_last_updated_header
+			Modified
+
+	.asset_list
+		= render partial: 'asset', collection: @assets
