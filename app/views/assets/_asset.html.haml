@@ -1,1 +1,7 @@
-= debug @assets
+.div
+	.file
+		.br= link_to asset.file_name, asset_path(asset)
+		.actions
+			= link_to 'show', asset_path(asset)
+			= link_to 'edit', asset_path(asset)
+			= link_to 'destroy', asset_path(asset)

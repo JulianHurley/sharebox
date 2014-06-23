@@ -8,7 +8,17 @@ body {
   font-family: "Lucida Grande","Verdana","Arial","Bitstream Vera Sans",sans-serif; 
   font-size: 14px; 
 } 
-  
+
+.actions {
+  border: 1px solid red;
+  float: right;
+}
+
+.file {
+  border: 1px solid green;
+  height: 60px;
+}
+
 .header_wrapper { 
     width: 880px; 
     margin: 0 auto; 

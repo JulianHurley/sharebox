@@ -16,6 +16,21 @@
 require 'capybara/rspec'
 require 'factory_girl'
 require 'database_cleaner'
+
+def sign_up
+  visit '/users/sign_up'
+  fill_in 'user_name', with: 'name'
+  fill_in 'user_email', with: 'myemail@email.com'
+  fill_in 'user_password', with: 'passpass'
+  fill_in 'user_password_confirmation', with: 'passpass'
+  click_button 'Sign up'
+end
+
+def upload_file
+  click_link 'Upload File'
+  attach_file 'asset_uploaded_file', '/Users/julianhurley/Desktop/boxshare/spec/support/image/eve.jpg'
+  click_button 'Upload'
+end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 # The settings below are suggested to provide a good initial experience

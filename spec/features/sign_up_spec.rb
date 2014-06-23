@@ -2,18 +2,7 @@ require 'rails_helper'
 
 feature 'User signup', js: true, type: :feature do
 
-	def sign_up
-		visit '/users/sign_up'
-		fill_in 'user_name', with: 'name'
-		fill_in 'user_email', with: 'myemail@email.com'
-		fill_in 'user_password', with: 'passpass'
-		fill_in 'user_password_confirmation', with: 'passpass'
-		click_button 'Sign up'
-	end
 
-	def sign_out
-	
-	end
 
 	it 'user signs up' do
 		sign_up

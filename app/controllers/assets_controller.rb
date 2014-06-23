@@ -1,17 +1,17 @@
 class AssetsController < ApplicationController
-	before_filter :authenticate_user!
-
+	before_action :authenticate_user!
+	before_action :set_asset, only: [:show, :edit, :update, :destroy]
+	
 	def new
 		@asset = current_user.assets.new
+
+		title 'Upload new asset'
 	end
 	def create 
-		#if asset = current_user.assets.create(asset_params)
 		current_user.assets.create(asset_params)
 		flash.now[:notice] = 'successfully uploaded file!'
+		
 		render 'static/home'
-		#else
-		#	redirect_to assets_new_url, alert: 'file could not be uploaded', status: 304
-		#end
 	end
 
 	def index
@@ -21,24 +21,23 @@ class AssetsController < ApplicationController
 	end
 
 	def show
-		@asset = current_user.assets.find(asset_params)
 	end
 
 	def edit
-		@asset = current_user.assets.find(asset_params)
 	end
 	def update
-		@asset = current_user.assets.find(asset_params)
 	end
 
 	def destroy
-		asset = current_user.assets.find(asset_params)
-		asset.destroy
+		@asset.destroy
 	end
 
 	private
+		def set_asset
+			@asset = current_user.assets.find(params[:id])
+		end
+
 		def asset_params
-		#	ap params
 			params.require(:asset).permit(:uploaded_file)
 		end
 end
