@@ -12,6 +12,7 @@ group :test, :development, :production do
 	gem 'devise'
 	gem 'haml'
 	gem 'paperclip', '~> 4.1'
+	gem 'awesome_print'
 	gem 'ap'
 end
 

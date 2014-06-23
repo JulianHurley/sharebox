@@ -5,16 +5,16 @@ class AssetsController < ApplicationController
 		@asset = current_user.assets.new
 	end
 	def create 
-		if asset = current_user.assets.create(asset_params)
-			flash.now[:notice] = 'successfully uploaded file!'
-			render 'static/home'
-		else
-			redirect_to assets_new_url, alert: 'file could not be uploaded', status: 304
-		end
+		#if asset = current_user.assets.create(asset_params)
+		current_user.assets.create(asset_params)
+		flash.now[:notice] = 'successfully uploaded file!'
+		render 'static/home'
+		#else
+		#	redirect_to assets_new_url, alert: 'file could not be uploaded', status: 304
+		#end
 	end
 
 	def index
-		p "YES YES"
 		@assets = current_user.assets
 	end
 
@@ -36,7 +36,7 @@ class AssetsController < ApplicationController
 
 	private
 		def asset_params
-			pp params
-			params.require(:assets).permit(:asset)
+		#	ap params
+			params.require(:asset).permit(:uploaded_file)
 		end
 end

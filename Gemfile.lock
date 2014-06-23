@@ -30,6 +30,7 @@ GEM
     ap (0.1.1)
       httparty (>= 0.7.7)
     arel (5.0.1.20140414130214)
+    awesome_print (1.1.0)
     bcrypt (3.1.7)
     builder (3.2.2)
     capybara (2.3.0)
@@ -189,6 +190,7 @@ PLATFORMS
 
 DEPENDENCIES
   ap
+  awesome_print
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner

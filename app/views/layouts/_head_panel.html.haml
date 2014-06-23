@@ -6,8 +6,8 @@
 	- if user_signed_in?
 		= current_user.email |
 		= link_to 'Sign out', destroy_user_session_path, method: :delete |
-		= link_to 'Upload File', new_assets_path
-
+		= link_to 'Upload File', new_asset_path
+		= link_to 'My Assets', '/assets'
 	- else
 		.em
 			Not Signed In.
