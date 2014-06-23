@@ -16,6 +16,8 @@ class AssetsController < ApplicationController
 
 	def index
 		@assets = current_user.assets
+
+		title 'All assets'
 	end
 
 	def show
