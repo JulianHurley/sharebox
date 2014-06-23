@@ -11,6 +11,9 @@ group :test, :development, :production do
 	gem 'jbuilder', '~> 2.0'
 	gem 'devise'
 	gem 'haml'
+	gem 'paperclip', '~> 4.1'
+	gem 'awesome_print'
+	gem 'ap'
 end
 
 group :test, :development do
