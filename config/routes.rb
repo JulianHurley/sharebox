@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :folders
+
   devise_for :users
  
   root to: 'static#home'

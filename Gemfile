@@ -13,7 +13,7 @@ group :test, :development, :production do
 	gem 'haml'
 	gem 'paperclip', '~> 4.1'
 	gem 'awesome_print'
-	gem 'ap'
+	gem 'acts_as_tree'
 end
 
 group :test, :development do
