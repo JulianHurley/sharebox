@@ -8,9 +8,8 @@
 			%ul#top_menu
 				%li= current_user.name
 				%li= link_to 'Upload', new_asset_path
-				%li= link_to 'sign out', destroy_user_session_path, method: :delete
-				%li= link_to 'My assets', assets_path
-				%li= link_to 'Sign Out'
+				%li= link_to 'Create Folder', new_folder_path
+				%li= link_to 'Sign out', destroy_user_session_path, method: :delete
 	- else
 		.em
 			Not Signed In.
