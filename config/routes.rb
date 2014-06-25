@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :assets
 
   get 'assets/get/:id', to: 'assets#get', as: :download_asset
-
+  get 'browse/:id', to: 'static#browse', as: :browse
 end

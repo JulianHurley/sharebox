@@ -1,0 +1,1 @@
+require 'assets/named_scopes/m.rb'
