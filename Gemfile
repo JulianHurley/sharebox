@@ -13,7 +13,7 @@ group :test, :development, :production do
 	gem 'haml'
 	gem 'paperclip', '~> 4.1'
 	gem 'awesome_print'
-	gem 'ap'
+	gem 'acts_as_tree' # use ancestory instead
 end
 
 group :test, :development do
@@ -26,6 +26,10 @@ group :test, :development do
 end
 group :development do
 	gem 'spring'
+end
+
+group :production, :development do
+	gem 'font-awesome-rails'
 end
 
 group :doc do

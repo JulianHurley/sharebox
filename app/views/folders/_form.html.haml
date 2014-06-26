@@ -1,0 +1,13 @@
+= form_for @folder do |f|
+  %p
+    = f.text_field :name
+    = f.hidden_field :parent_id, value: @folder.parent_id # security risk. Find out how to stop this and do it the Rails 4 way
+  %p
+    = f.submit 'Create Folder'
+
+  = debug(@folder.parent)
+
+  - if @folder.parent
+    = link_to "Back to #{@folder.parent.name}'s folder", browse_path(@folder.parent)
+  - else
+    = link_to "Back to Home Page", root_url

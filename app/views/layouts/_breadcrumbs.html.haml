@@ -1,0 +1,11 @@
+.breadcrumbs
+	- if @parent_folder
+		= link_to 'ShareBox', root_url
+		-# ancestors is a acts_as_tree helper
+		- @parent_folder.ancestors.reverse.each do |folder|
+			= link_to "» #{folder.name}", browse_path(folder)
+		
+		= @parent_folder.name
+
+	- else 
+		ShareBox
