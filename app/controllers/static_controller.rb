@@ -12,7 +12,7 @@ class StaticController < ApplicationController
 		@parent_folder = current_user.folders.find(params[:id])
 		@child_folders = @parent_folder.children
 
-		#@folders = @parent_folder.folders.order('uploaded_file_file_name desc')
+		@folders = @parent_folder.children#folders.order('uploaded_file_file_name desc')
 		@assets = @parent_folder.assets.order('uploaded_file_file_name desc')
 
 		render action: 'home'
