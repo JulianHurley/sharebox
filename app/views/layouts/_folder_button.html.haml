@@ -1,0 +1,4 @@
+-if @parent_folder
+	%li= link_to 'New Folder', new_sub_folder_url(parent_id: @parent_folder.id)
+-else
+	%li= link_to 'New Folder', new_folder_path

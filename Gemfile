@@ -13,7 +13,7 @@ group :test, :development, :production do
 	gem 'haml'
 	gem 'paperclip', '~> 4.1'
 	gem 'awesome_print'
-	gem 'acts_as_tree'
+	gem 'acts_as_tree' # use ancestory instead
 end
 
 group :test, :development do
