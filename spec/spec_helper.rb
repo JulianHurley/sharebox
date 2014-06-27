@@ -16,7 +16,6 @@
 require 'capybara/rspec'
 require 'factory_girl'
 require 'database_cleaner'
-
 def sign_up
   visit '/users/sign_up'
   fill_in 'user_name', with: 'name'

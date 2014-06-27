@@ -13,12 +13,16 @@ class AssetsController < ApplicationController
 		title 'Upload new asset'
 	end
 	def create
+		asset = current_user.assets.create(asset_params)
 
-		@asset = current_user.assets.build(params[:uploaded_file])
-		current_user.assets.create(asset_params)
-		flash.now[:notice] = 'successfully uploaded file!'
-		
-		render 'static/home'
+		ap asset.parent_id
+
+		if asset.parent?
+			redirect_to browse_path(asset.parent.id), notice: "successfully uploaded file to !"
+#			redirect_to root_url, notice: 'successfully uploaded file!'
+		else 
+			redirect_to root_url, notice: 'successfully uploaded file!'
+		end
 	end
 
 	def index

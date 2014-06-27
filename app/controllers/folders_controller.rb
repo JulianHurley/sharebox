@@ -18,21 +18,14 @@ class FoldersController < ApplicationController
   def new
     @folder = current_user.folders.new
 
-
-
     if params[:parent_id] # if weve arrived here via the new_sub_folder path. This action is in charge of creating orphan folders AND sub folders
       @parent_folder = current_user.folders.find(params[:parent_id])
       @folder.parent_id = @parent_folder.id
-      ap @folder
     end
   end
   # POST /folders
   # POST /folders.json
   def create
-    ap params
-    ap "----"
-    ap @folder
-    
     @folder = current_user.folders.new(folder_params)
 
     if @folder.save
