@@ -1,6 +1,10 @@
+d
+= debug @asset
+
 = form_for @asset, html: {multipart: true} do |f|
 	%p
 		= f.label :uploaded_file, 'File'
 		= f.file_field :uploaded_file
+		= f.hidden_field :parent_id, value: @asset.parent_id # security risk. Find out how to stop this and do it the Rails 4 way
 	%p
 		= f.submit 'Upload'

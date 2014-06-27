@@ -1,3 +1,7 @@
+hiyahiya
+=debug @assets
+hiyahiya
+
 - unless user_signed_in?
 	.h1 Welcome to share box
 	.p The file sharing web application you can't ignore
@@ -13,5 +17,5 @@
 			Modified
 
 	.asset_list
-		= render partial: 'folder', collection: @folders
-		= render partial: 'asset', collection: @assets
+		= render partial: 'static/folder', collection: @folders
+		= render partial: 'static/asset', collection: @assets
