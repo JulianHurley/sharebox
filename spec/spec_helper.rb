@@ -15,7 +15,9 @@
 
 require 'capybara/rspec'
 require 'factory_girl'
+require 'devise'
 require 'database_cleaner'
+require 'support/helpers/controller_helpers'
 def sign_up
   visit '/users/sign_up'
   fill_in 'user_name', with: 'name'
@@ -39,6 +41,7 @@ RSpec.configure do |config|
   # `:focus` metadata. When nothing is tagged with `:focus`, all examples
   # get run.
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
 
   config.filter_run :focus
   config.run_all_when_everything_filtered = true

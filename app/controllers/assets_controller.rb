@@ -15,10 +15,8 @@ class AssetsController < ApplicationController
 	def create
 		asset = current_user.assets.create(asset_params)
 
-		ap asset.parent_id
-
 		if asset.parent?
-			redirect_to browse_path(asset.parent.id), notice: "successfully uploaded file to !"
+			redirect_to browse_path(asset.parent_id), notice: "successfully uploaded file!"
 #			redirect_to root_url, notice: 'successfully uploaded file!'
 		else 
 			redirect_to root_url, notice: 'successfully uploaded file!'
