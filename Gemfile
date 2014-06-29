@@ -14,15 +14,18 @@ group :test, :development, :production do
 	gem 'paperclip', '~> 4.1'
 	gem 'awesome_print'
 	gem 'acts_as_tree' # use ancestory instead
+	gem 'faker'
 end
 
 group :test, :development do
+	gem 'rspec-its'
 	gem 'rspec-activemodel-mocks' # attempt to get mocks working. delete
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'factory_girl_rails'
 	gem 'selenium-webdriver'
 	gem 'database_cleaner'
+	gem 'fuubar'
 end
 group :development do
 	gem 'spring'

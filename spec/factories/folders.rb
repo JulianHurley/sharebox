@@ -1,9 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
-  factory :folder do
-    name "MyString"
-    parent_id 1
-    user_id 1
+  factory :folder, class: Folder do
+    name { Faker::Lorem.word }
+    parent_id nil
+    user_id nil
   end
 end

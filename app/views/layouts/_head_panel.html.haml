@@ -7,7 +7,6 @@
 		#menu
 			%ul#top_menu
 				%li= current_user.name
-				%li= link_to 'Upload', new_asset_path
 				= render partial: 'layouts/folder_button'
 				%li= link_to 'Sign out', destroy_user_session_path, method: :delete
 

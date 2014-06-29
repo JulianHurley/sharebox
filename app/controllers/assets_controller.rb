@@ -5,13 +5,22 @@ class AssetsController < ApplicationController
 	def new
 		@asset = current_user.assets.new
 
+		if params[:parent_id] # if weve arrived here via the new_sub_folder path. This action is in charge of creating orphan folders AND sub folders
+	    	@parent_folder = current_user.folders.find(params[:parent_id])
+			@asset.parent_id = @parent_folder.id
+	    end
+
 		title 'Upload new asset'
 	end
-	def create 
-		current_user.assets.create(asset_params)
-		flash.now[:notice] = 'successfully uploaded file!'
-		
-		render 'static/home'
+	def create
+		asset = current_user.assets.create(asset_params)
+
+		if asset.parent?
+			redirect_to browse_path(asset.parent_id), notice: "successfully uploaded file!"
+#			redirect_to root_url, notice: 'successfully uploaded file!'
+		else 
+			redirect_to root_url, notice: 'successfully uploaded file!'
+		end
 	end
 
 	def index
@@ -53,6 +62,6 @@ class AssetsController < ApplicationController
 		end
 
 		def asset_params
-			params.require(:asset).permit(:uploaded_file)
+			params.require(:asset).permit(:uploaded_file, :parent_id)
 		end
 end
