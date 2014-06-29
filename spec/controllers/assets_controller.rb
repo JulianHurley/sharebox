@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe AssetsController, type: :controller do
 
   subject { response }
-
+=begin
   let(:file) { ActionDispatch::Http::UploadedFile.new({
     :filename => 'eve.jpg',
     :type => 'image/jpeg',
     :tempfile => File.new("#{Rails.root}/spec/fixtures/files/eve.jpg")
   }) }  
-
+=end
+  let(:file) { fixture_file_upload('files/eve.jpg', 'image/jpeg') }
   let(:folder) { FactoryGirl.create(:folder) }
   let(:user) { FactoryGirl.create(:user) }
 
