@@ -1,1 +1,6 @@
 = render partial: 'form'
+
+-if @asset.parent?
+	= link_to "Back 2 #{@asset.folder.name} Folder", browse_path(@asset.folder) 
+-else 
+	= link_to "Back to root", root_url

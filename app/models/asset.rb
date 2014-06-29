@@ -2,7 +2,7 @@ class Asset < ActiveRecord::Base
 	include Filesystem
 
 	belongs_to :user
-	belongs_to :folder
+	belongs_to :folder, foreign_key: :parent_id
 	
 	has_attached_file :uploaded_file,
 					  url: 'assets/get/:id',
