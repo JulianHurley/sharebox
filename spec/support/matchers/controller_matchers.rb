@@ -1,6 +1,7 @@
 RSpec::Matchers.define :redirect_to_location do |expected|	
 	match do |actual|
 		@actual = actual.location.gsub('http://test.host', '')
+		
 		expected == @actual
 	end
 

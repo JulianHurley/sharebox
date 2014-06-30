@@ -18,9 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe FoldersController, :type => :controller do
- subject { response }
-
+RSpec.describe StaticController, :type => :controller do
   let!(:user) { FactoryGirl.create(:user) }  
   let!(:parent_folder) { FactoryGirl.create(:folder, user_id: user.id) }
   let!(:child_folder) { FactoryGirl.create(:folder, user_id: user.id, parent_id: parent_folder.id) }
@@ -30,8 +28,9 @@ RSpec.describe FoldersController, :type => :controller do
     sign_in user
   end
 
+  subject { response }
+
   describe '#destroy' do
-    
     it 'deletes an orphaned folder' do
         expect{ delete :destroy, id: orphan_folder.id }.to change(Folder, :count).by(-1)
     end
@@ -51,7 +50,7 @@ RSpec.describe FoldersController, :type => :controller do
       it { should set_flash_message_to 'successfully delted the folder' }
     end
 
-    context 'when in folder' do
+    context 'when child' do
 
       before do
         delete :destroy, id: child_folder.id
