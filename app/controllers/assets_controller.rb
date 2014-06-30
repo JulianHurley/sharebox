@@ -44,7 +44,7 @@ class AssetsController < ApplicationController
 	end
 
 	def destroy
-		@asset.destroy
+
 	end
 
 	private
