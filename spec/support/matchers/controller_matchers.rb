@@ -7,15 +7,15 @@ RSpec::Matchers.define :set_status_code do |expected|
 	end
 
 	failure_message do |actual|
-	    " have http status code of '#{@expected}', but was '#{@actual}'"
+	    "have http status code of '#{@expected}', but was '#{@actual}'"
 	end
 
 	failure_message_when_negated do |actual|
-	    " not have http status code of '#{@expected}', but was '#{@actual}'"
+	    "not have http status code of '#{@expected}', but was '#{@actual}'"
 	end
 
 	description do
-	    " have http status code of '#{@expected}'"
+	    "have http status code of '#{@expected}'"
 	end
 end
 
@@ -27,15 +27,15 @@ RSpec::Matchers.define :redirect_to_location do |expected|
 	end
 
 	failure_message do |actual|
-	    " redirect to #{expected}, instead redirected to #{@actual}"
+	    "redirect to #{expected}, instead redirected to #{@actual}"
 	end
 
 	failure_message_when_negated do |actual|
-	    " not redirect to #{expected}, but did redirect to #{@actual}"
+	    "not redirect to #{expected}, but did redirect to #{@actual}"
 	end
 
 	description do
-	    " redirect to #{expected}"
+	    "redirect to #{expected}"
 	end
 end
 
