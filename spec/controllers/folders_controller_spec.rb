@@ -30,8 +30,17 @@ RSpec.describe FoldersController, :type => :controller do
     sign_in user
   end
 
+  describe '#edit' do
+    before do
+      get :edit, id: parent_folder.id
+    end
+
+    it { should set_the_instance_variable(:@folder).to(parent_folder)}
+    it { should respond_with_type 'text/html' }
+
+  end
+
   describe '#destroy' do
-    
     it 'deletes an orphaned folder' do
         expect{ delete :destroy, id: orphan_folder.id }.to change(Folder, :count).by(-1)
     end
@@ -40,7 +49,7 @@ RSpec.describe FoldersController, :type => :controller do
         expect{ delete :destroy, id: child_folder.id }.to change(Folder, :count).by(-1)
     end
 
-    context 'when orphan' do
+    describe 'response when orphan' do
       before do
         delete :destroy, id: orphan_folder.id
       end
@@ -51,7 +60,7 @@ RSpec.describe FoldersController, :type => :controller do
       it { should set_flash_message_to 'successfully delted the folder' }
     end
 
-    context 'when in folder' do
+    describe 'response when in folder' do
 
       before do
         delete :destroy, id: child_folder.id

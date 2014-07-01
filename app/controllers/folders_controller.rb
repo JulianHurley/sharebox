@@ -42,6 +42,7 @@ class FoldersController < ApplicationController
   
   # GET /folders/1/edit
   def edit
+    #@parent_folder = @folder.parent
   end
 
 

@@ -6,6 +6,6 @@
 		.share
 			= link_to 'Share'
 		.rename
-			= link_to 'Rename'
+			= link_to 'Rename', rename_folder_path(folder)
 		.delete
 			= link_to 'Delete', folder, method: :delete, confirm: 'Are you sure you wish to delete this file'
