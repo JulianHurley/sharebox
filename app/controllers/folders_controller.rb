@@ -51,6 +51,9 @@ class FoldersController < ApplicationController
   # PATCH/PUT /folders/1.json
   def update
     respond_to do |format|
+
+      session[:foo] = 'baz'
+
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :show, status: :ok, location: @folder }

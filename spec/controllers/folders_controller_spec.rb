@@ -40,19 +40,12 @@ RSpec.describe FoldersController, :type => :controller do
     sign_in user
   end
 
-  describe '#edit' do
-    before do
-      get :edit, id: parent_folder.id
-    end
-  
-#    it { should route(:get, '/browse/1').to(controller: :static, action: :browse, id: parent_folder.id) }
-  end
 
   describe '#edit' do
     before do
       get :edit, id: parent_folder.id
     end
-
+    
     it { should set_the_instance_variable(:@folder).to(parent_folder)}
     it { should respond_with_type 'text/html' }
   end
@@ -60,7 +53,6 @@ RSpec.describe FoldersController, :type => :controller do
   describe '#update' do
     let(:new_name) { Faker::Lorem.word }
     let(:request) { patch :update, id: parent_folder.id, folder: { name: new_name, parent_id: nil, user_id: user.id } }
-
 
     describe 'response' do
       before { request }
@@ -70,22 +62,25 @@ RSpec.describe FoldersController, :type => :controller do
       it { should set_flash_type_to :notice }
       it { should set_flash_message_to 'Folder was successfully updated.' }
       it { should filter_param('password') }
-      it { should set_the_session 'arse' }
     end
 
-    it 'route' do
-      #controller.should route(:get, '/posts/1').to(action: :show, id: 1)
+    describe 'session' do
+      before { request }
+      subject { session }
+
+      it { should set_session_key(:foo).to('baz') }
+      it { should have_user_id_of 1 }
+
     end
 
-    it 'should make database queries' do
-      expect { request }.to make_database_queries(count: 5)
-    end
+    describe 'database' do
+      it 'should make database queries' do
+        expect { request }.to make_database_queries(count: 5)
+      end
 
-    it 'should change the name' do
-    #  expect{ request }.to change( parent_folder.reload.name ).from(parent_folder.name).to(parent_folder.name)# @new_name
-      expect {
-        request
-      }.to change{parent_folder.reload.name}.from(parent_folder.name).to(new_name)
+      it 'should change the name' do
+        expect { request }.to change{parent_folder.reload.name}.from(parent_folder.name).to(new_name)
+      end
     end
   end
 

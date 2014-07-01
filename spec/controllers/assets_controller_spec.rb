@@ -32,6 +32,9 @@ RSpec.describe AssetsController, type: :controller do
         get :get, id: Asset.count + 1      
       end
 
+
+      
+
       it { should redirect_to_location '/assets'}
       it { should set_flash_type_to :error }
       it { should set_flash_message_to 'missing file' }

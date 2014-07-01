@@ -1,21 +1,93 @@
-RSpec::Matchers.define :set_the_session do |instance|	
-	match do |actual|
-		ap actual.session
+module SessionHelpers
+	def user_entry
+		actual['warden.user.user.key']
+	end
 
-		@actual = controller.instance_variable_get(instance)
+	def user_id
+		user_entry[0][0]
+	end
+
+	def user_key
+		user_entry[1]
+	end
+
+	def flash_entry
+		session['flash']
+	end
+
+	def flash_discard
+		flash_entry['discard']
+	end
+
+	def flash_flashes
+		flash_entry['flashes']
+	end
+
+	def first_flash
+		flash_entry['flashes'].first
+	end
+end
+
+RSpec::Matchers.define :set_session_key do |key|
+	match do |actual|		
+		@actual = actual[key]
 		@actual == @expected
 	end
 
 	failure_message do |actual|
-	    "set '#{@actual}' equal to #{@expected}. However, it did not: \n '#{@actual.inspect}' \n '#{@expected.inspect}'"
+	    "set the '#{key}' entry's value to '#{@expected}'. Instead its value is '#{@actual}'"
 	end
 
 	failure_message_when_negated do |actual|
-	    "set '#{@actual}' not equal to #{@expected}. However, it did: \n '#{@actual.inspect}' \n '#{@expected.inspect}'"
+	    "not set the '#{key}' entry's value to '#{@expected}'. Its value is '#{@actual}'"
 	end
 
 	description do
-	    "set the instance '#{@actual}' to equal '#{expected}'"
+ 		"set the '#{key}' entry's value to '#{@expected}'"
+ 	end
+
+	def to(expected)
+		@expected = expected
+		self
+	end
+
+end
+
+RSpec::Matchers.define :have_user_id_of do |expected|	
+	include SessionHelpers
+
+	match do |actual|		
+		@expected = expected
+		@actual = user_id
+
+		@actual == @expected
+	end
+
+	failure_message do |actual|
+	    "have an id of '#{@expected}'. Instead it had an id of '#{@actual}'"
+	end
+
+	failure_message_when_negated do |actual|
+	    "not have an id of '#{@expected}'. It did have an id of '#{@actual}'"
+	end
+
+	description do
+	    "have an id of '#{@expected}'"
+	end
+end
+
+RSpec::Matchers.define :set_session do |key|	
+	match do |actual|		
+
+	end
+
+	failure_message do |actual|
+	end
+
+	failure_message_when_negated do |actual|
+	end
+
+	description do
 	end
 
 	def to(expected)
