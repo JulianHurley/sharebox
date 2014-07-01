@@ -70,7 +70,6 @@ RSpec.describe FoldersController, :type => :controller do
 
       it { should set_session_key(:foo).to('baz') }
       it { should have_user_id_of 1 }
-
     end
 
     describe 'database' do
