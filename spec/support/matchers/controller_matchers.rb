@@ -78,11 +78,10 @@ RSpec::Matchers.define :set_the_instance_variable do |instance|
 	    "should set the message to '#{expected}'"
 	end
 
-	
-		def to(value)
-			@value = value
-			self
-		end
+	def to(value)
+		@value = value
+		self
+	end
 end
 
 RSpec::Matchers.define :respond_with_type do |expected|	
@@ -103,9 +102,4 @@ RSpec::Matchers.define :respond_with_type do |expected|
 	    "Should respond with '#{expected}'"
 	end
 
-	
-		def to(value)
-			@value = value
-			self
-		end
 end

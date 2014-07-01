@@ -37,7 +37,17 @@ RSpec.describe FoldersController, :type => :controller do
 
     it { should set_the_instance_variable(:@folder).to(parent_folder)}
     it { should respond_with_type 'text/html' }
+  end
 
+  describe '#update' do
+    let(:new_name) { Faker::Lorem.word }
+    let(:request) { patch :update, id: 23, folder: { name: new_name, parent_id: nil, user_id: user.id } }
+
+    before do
+      request
+    end
+
+    it { should respond_with_type 'text/html' }
   end
 
   describe '#destroy' do
