@@ -6,6 +6,9 @@ describe Folder, type: :model do
 	let(:folder_three){ FactoryGirl.create(:folder, parent_id: folder_two.id) }
 	let(:folder_four){ FactoryGirl.create(:folder, parent_id: folder_three.id) }
 
+	describe 'Associations' do
+		
+	end
 
 	describe '#parent?' do
 		context 'when first folder' do

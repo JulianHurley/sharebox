@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
 	def home
 		if user_signed_in?
-			@assets = current_user.assets.where('folder_id is NULL').order('uploaded_file_file_name desc') if user_signed_in?
+			@assets = current_user.assets.where('parent_id is NULL').order('uploaded_file_file_name desc') if user_signed_in?
 			@folders = current_user.folders.roots.order('name desc')
 
 			title 'Home'
