@@ -70,7 +70,7 @@ RSpec.describe FoldersController, :type => :controller do
       it { should set_flash_type_to :notice }
       it { should set_flash_message_to 'Folder was successfully updated.' }
       it { should filter_param('password') }
-      it { should set_session 'arse' }
+      it { should set_the_session 'arse' }
     end
 
     it 'route' do

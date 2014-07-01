@@ -1,3 +1,29 @@
+RSpec::Matchers.define :set_the_session do |instance|	
+	match do |actual|
+		ap actual.session
+
+		@actual = controller.instance_variable_get(instance)
+		@actual == @expected
+	end
+
+	failure_message do |actual|
+	    "set '#{@actual}' equal to #{@expected}. However, it did not: \n '#{@actual.inspect}' \n '#{@expected.inspect}'"
+	end
+
+	failure_message_when_negated do |actual|
+	    "set '#{@actual}' not equal to #{@expected}. However, it did: \n '#{@actual.inspect}' \n '#{@expected.inspect}'"
+	end
+
+	description do
+	    "set the instance '#{@actual}' to equal '#{expected}'"
+	end
+
+	def to(expected)
+		@expected = expected
+		self
+	end
+end
+
 RSpec::Matchers.define :set_status_code do |expected|	
 	match do |actual|
 		@actual = actual.status
