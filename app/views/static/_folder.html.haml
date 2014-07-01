@@ -1,3 +1,11 @@
-.file_name= link_to folder.name, browse_path(folder)
-.file_size -
-.file_last_updated -
+.asset_details
+	.file_name= link_to folder.name, browse_path(folder)
+	.file_size -
+	.file_last_updated -
+	.actions
+		.share
+			= link_to 'Share'
+		.rename
+			= link_to 'Rename', rename_folder_path(folder)
+		.delete
+			= link_to 'Delete', folder, method: :delete, confirm: 'Are you sure you wish to delete this file'

@@ -18,19 +18,8 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-### MATCHERS:
-# filter_param tests parameter filtering configuration. -
-# redirect_to tests that an action redirects to a certain location.
-# render_template tests that an action renders a template.
-# render_with_layout tests that an action is rendereed with a certain layout.
-# rescue_from tests usage of the rescue_from macro. 
-# respond_with tests that an action responds with a certain status code.
-# route tests your routes. -
-# set_session makes assertions on the session hash. -
-# set_the_flash makes assertions on the flash hash.
-
-RSpec.describe FoldersController, :type => :controller do
-
+RSpec.describe StaticController, :type => :controller do
+=begin
   let!(:user) { FactoryGirl.create(:user) }  
   let!(:parent_folder) { FactoryGirl.create(:folder, user_id: user.id) }
   let!(:child_folder) { FactoryGirl.create(:folder, user_id: user.id, parent_id: parent_folder.id) }
@@ -40,48 +29,7 @@ RSpec.describe FoldersController, :type => :controller do
     sign_in user
   end
 
-
-  describe '#edit' do
-    before do
-      get :edit, id: parent_folder.id
-    end
-    
-    it { should set_the_instance_variable(:@folder).to(parent_folder)}
-    it { should respond_with_type 'text/html' }
-  end
-
-  describe '#update' do
-    let(:new_name) { Faker::Lorem.word }
-    let(:request) { patch :update, id: parent_folder.id, folder: { name: new_name, parent_id: nil, user_id: user.id } }
-
-    describe 'response' do
-      before { request }
-      subject { response }
-
-      it { should respond_with_type 'text/html' }
-      it { should set_flash_type_to :notice }
-      it { should set_flash_message_to 'Folder was successfully updated.' }
-      it { should filter_param('password') }
-    end
-
-    describe 'session' do
-      before { request }
-      subject { session }
-
-      it { should set_session_key(:foo).to('baz') }
-      it { should have_user_id_of 1 }
-    end
-
-    describe 'database' do
-      it 'should make database queries' do
-        expect { request }.to make_database_queries(count: 5)
-      end
-
-      it 'should change the name' do
-        expect { request }.to change{parent_folder.reload.name}.from(parent_folder.name).to(new_name)
-      end
-    end
-  end
+  subject { response }
 
   describe '#destroy' do
     it 'deletes an orphaned folder' do
@@ -92,26 +40,29 @@ RSpec.describe FoldersController, :type => :controller do
         expect{ delete :destroy, id: child_folder.id }.to change(Folder, :count).by(-1)
     end
 
-    describe 'response when orphan' do
+    context 'when orphan' do
       before do
         delete :destroy, id: orphan_folder.id
       end
-      it { should set_status_code 302 }
+
+      it { should have_http_status 302 }
       it { should redirect_to_location '/' }
       it { should set_flash_type_to :notice }
       it { should set_flash_message_to 'successfully delted the folder' }
     end
 
-    describe 'response when in folder' do
+    context 'when child' do
 
       before do
         delete :destroy, id: child_folder.id
       end
 
-      it { should set_status_code 302 }
+      it { should have_http_status 302 }
       it { should redirect_to_location "/browse/#{parent_folder.id}" }
       it { should set_flash_type_to :notice }
       it { should set_flash_message_to 'successfully delted the folder' }
     end
   end
+=end
 end
+

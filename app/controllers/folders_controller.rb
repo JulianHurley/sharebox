@@ -42,6 +42,7 @@ class FoldersController < ApplicationController
   
   # GET /folders/1/edit
   def edit
+    #@parent_folder = @folder.parent
   end
 
 
@@ -50,6 +51,9 @@ class FoldersController < ApplicationController
   # PATCH/PUT /folders/1.json
   def update
     respond_to do |format|
+
+      session[:foo] = 'baz'
+
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :show, status: :ok, location: @folder }
@@ -63,10 +67,17 @@ class FoldersController < ApplicationController
   # DELETE /folders/1
   # DELETE /folders/1.json
   def destroy
-    @folder.destroy
-    respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was successfully destroyed.' }
-      format.json { head :no_content }
+    folder = current_user.folders.find(params[:id])
+    parent_folder = folder.parent
+
+    folder.destroy
+
+    flash[:notice] = 'successfully delted the folder'
+
+    if parent_folder
+      redirect_to browse_path(parent_folder.id)#, status: 302
+    else
+      redirect_to root_url#, status: 302
     end
   end
 
@@ -78,7 +89,7 @@ class FoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      ap params
+      #ap params
 
       params.require(:folder).permit(:name, :parent_id, :user_id)
     end

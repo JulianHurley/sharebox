@@ -16,10 +16,10 @@ class AssetsController < ApplicationController
 		asset = current_user.assets.create(asset_params)
 
 		if asset.parent?
-			redirect_to browse_path(asset.parent_id), notice: "successfully uploaded file!"
+			redirect_to browse_path(asset.parent_id), notice: "successfully uploaded file!", status: 302
 #			redirect_to root_url, notice: 'successfully uploaded file!'
 		else 
-			redirect_to root_url, notice: 'successfully uploaded file!'
+			redirect_to root_url, notice: 'successfully uploaded file!', status: 302
 		end
 	end
 
@@ -36,6 +36,9 @@ class AssetsController < ApplicationController
 
 		rescue ActionController::MissingFile
 			redirect_to assets_url, notice: 'missing file'
+		# we shouldnt need these. The rescue in set_asset would stop this.
+		# we only need this if somethings gone wrong and the file doesnt exist
+		# but its record in the database does exist...
 	end
 
 	def edit
@@ -44,7 +47,7 @@ class AssetsController < ApplicationController
 	end
 
 	def destroy
-		@asset.destroy
+
 	end
 
 	private
@@ -57,7 +60,7 @@ class AssetsController < ApplicationController
 			@asset = current_user.assets.find(params[:id])
 			
 			rescue ActiveRecord::RecordNotFound
-				flash[:notice] = "resource does not exist"
+				flash[:error] = "missing file"
 				redirect_to assets_url
 		end
 
