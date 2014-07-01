@@ -21,6 +21,7 @@ group :test, :development do
 	gem 'rspec-its'
 	gem 'rspec-activemodel-mocks' # attempt to get mocks working. delete
 	gem 'rspec-rails'
+	gem 'db-query-matchers'
 	gem 'shoulda-matchers'
 	gem 'capybara'
 	gem 'factory_girl_rails'
