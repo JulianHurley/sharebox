@@ -15,3 +15,8 @@
 	.asset_list
 		= render partial: 'static/folder', collection: @folders
 		= render partial: 'static/asset', collection: @assets
+
+	#invitation_form{ title: 'Invite others to share', style: 'display:block' }
+		=form_tag '/home/share' do
+			%label{ for: 'email_addresses' }
+				Enter Recipient Email Address

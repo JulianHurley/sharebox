@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "folders/show", :type => :view do
+  pending
   before(:each) do
     @folder = assign(:folder, Folder.create!(
       :name => "Name",

@@ -15,11 +15,13 @@ group :test, :development, :production do
 	gem 'awesome_print'
 	gem 'acts_as_tree' # use ancestory instead
 	gem 'faker'
+	gem 'jquery-ui-rails'
+	gem 'font-awesome-rails'
 end
 
 group :test, :development do
 	gem 'rspec-its'
-	gem 'rspec-activemodel-mocks' # attempt to get mocks working. delete
+	gem 'rspec-activemodel-mocks'
 	gem 'rspec-rails'
 	gem 'db-query-matchers'
 	gem 'shoulda-matchers'
@@ -34,7 +36,6 @@ group :development do
 end
 
 group :production, :development do
-	gem 'font-awesome-rails'
 end
 
 group :doc do

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "folders/new", :type => :view do
+  pending
+
   before(:each) do
     assign(:folder, Folder.new(
       :name => "MyString",

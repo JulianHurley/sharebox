@@ -1,5 +1,6 @@
 /*
  *= require font-awesome
+ *= require jquery.ui.all
  *= require_tree .
  *= require_self
  */

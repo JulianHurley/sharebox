@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "folders/edit", :type => :view do
+  pending
+
   before(:each) do
     @folder = assign(:folder, Folder.create!(
       :name => "MyString",
