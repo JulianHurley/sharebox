@@ -4,7 +4,7 @@
 	.file_last_updated -
 	.actions
 		.share
-			= link_to 'Share'
+			= link_to 'Share', '#', folder_id: folder.id, folder_name: folder.name
 		.rename
 			= link_to 'Rename', rename_folder_path(folder)
 		.delete

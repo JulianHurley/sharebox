@@ -31,7 +31,12 @@ group :test, :development do
 	gem 'database_cleaner'
 	gem 'fuubar'
 end
+
 group :development do
+	gem 'rb-fsevent'
+	gem 'guard-rspec'
+	gem 'growl_notify'
+	gem 'ruby_gntp'
 	gem 'spring'
 end
 
