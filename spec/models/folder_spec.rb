@@ -7,7 +7,7 @@ describe Folder, type: :model do
 	let(:folder_four){ FactoryGirl.create(:folder, parent_id: folder_three.id) }
 
 	describe 'Associations' do
-		
+		it{ should have_many(:shared_folders).class_name('SharedFolder').dependent :destroy }
 	end
 
 	describe '#parent?' do
