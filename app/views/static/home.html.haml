@@ -18,5 +18,12 @@
 
 	#invitation_form{ title: 'Invite others to share', style: 'display:block' }
 		=form_tag '/home/share' do
-			%label{ for: 'email_addresses' }
-				Enter Recipient Email Address
+			%label{ for: 'email_addresses' }	
+			Enter Recipient Email Address
+			= text_field_tag 'email_addresses', '', class: 'text ui-widget-content ui-corner-all'
+			%br
+			%label{ for: 'message' }
+			%br
+				Optional Message
+			= text_area_tag 'message', '', class: 'text ui-widget-content ui-corner-all'
+			= hidden_field_tag 'folder_id'
