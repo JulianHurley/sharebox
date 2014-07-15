@@ -29,7 +29,7 @@ end
 
 def upload_file
   click_link 'Upload File'
-  attach_file 'asset_uploaded_file', '/Users/julianhurley/Desktop/boxshare/spec/support/image/eve.jpg'
+  attach_file 'asset_uploaded_file', '/Users/julianhurley/Desktop/boxshare/spec/support/image/eve2.jpg'
   click_button 'Upload'
 end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
@@ -87,7 +87,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
 
-  config.order = :random
+  #config.order = :random
 
   # Seed global randomization in this process using the `--seed` CLI option.
   # Setting this allows you to use `--seed` to deterministically reproduce

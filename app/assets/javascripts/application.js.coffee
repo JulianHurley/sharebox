@@ -1,5 +1,12 @@
-//= require jquery
-//= require jquery_ujs
-//= require jquery.ui.all
-//= require turbolinks
-//= require_tree .
+#= require jquery
+#= require jquery_ujs
+#= require jquery.ui.all
+#= require turbolinks
+#= require_tree .
+
+console.log 'ready'
+
+
+$ ->
+  $("li").click ->
+	  console.log("submitted!")
