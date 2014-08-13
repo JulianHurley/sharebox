@@ -19,6 +19,44 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe StaticController, :type => :controller do
+  
+  describe '#share' do
+    let(:request) { post :share }
+
+    describe 'response' do
+      before { request }
+      subject { response }
+
+      it { should set_the_local_variable(:arse).to 'jimmies' }
+
+    end
+
+    describe 'session' do
+=begin
+      pending
+
+      before { request }
+      subject { session }
+
+      it { should set_session_key(:foo).to('baz') }
+      it { should have_user_id_of 1 }
+=end
+    end
+
+    describe 'database' do
+=begin
+      pending
+
+      it 'should make database queries' do
+        expect { request }.to make_database_queries(count: 5)
+      end
+
+      it 'should change the name' do
+        expect { request }.to change{parent_folder.reload.name}.from(parent_folder.name).to(new_name)
+      end
+=end
+    end
+  end
 =begin
   let!(:user) { FactoryGirl.create(:user) }  
   let!(:parent_folder) { FactoryGirl.create(:folder, user_id: user.id) }

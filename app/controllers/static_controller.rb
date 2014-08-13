@@ -1,4 +1,7 @@
 class StaticController < ApplicationController
+	respond_to :html, :json
+	
+
 	def home
 		if user_signed_in?
 			@assets = current_user.assets.where('parent_id is NULL').order('uploaded_file_file_name desc') if user_signed_in?
@@ -19,5 +22,15 @@ class StaticController < ApplicationController
 		
 		rescue ActiveRecord::RecordNotFound
 			redirect_to root_url, error: 'Don\'t be cheeky! Mind your own folder!', status: 404
+	end
+
+	def share
+		foo = 'lalio'
+
+		respond_to do |format|
+			format.html { render 'new' }
+      		format.json { render json: @arse }
+      	end
+
 	end
 end

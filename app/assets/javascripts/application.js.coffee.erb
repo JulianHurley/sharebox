@@ -1,0 +1,97 @@
+#= require jquery
+#= require jquery_ujs
+#= require jquery.ui.all
+#= require js-routes
+#= require turbolinks
+#= require_tree .
+
+console.log 'ready'
+
+$ ->
+	# open invitation form when share link is clicked
+	$('.share a').on 'click', (event) ->
+		# prevent us from following the link
+		event.preventDefault()
+		# assign the link we just clicked
+		shareLink = this
+		folderName = $(shareLink).attr 'folder_name'
+		folderId = $(shareLink).attr 'folder_id'
+
+		shareMessage = 'Share \'' + folderName + '\' with others'
+
+		# set title
+		$('#invitation_form').attr 'title', shareMessage
+		$('#ui-dialog-title-invitation_form').text shareMessage
+		$('#folder_id').val(folderId);
+
+		$('#invitation_form').dialog
+			height: 300
+			width: 600
+			modal: true
+			close: ->
+				# close functionality can go in here
+				# console.log 'closing the share window'
+			buttons:
+					'Share': ->
+						# the form's action is the where the form goes to. In this case, it's '/home/share' so now we just need to create a route for it
+						# we could also obtain this object by going:
+						#  Routes.user_friendships_path
+						# , courtesy of the js-routes gem
+						
+						post_url = $('#invitation_form form').attr 'action'
+						$.post post_url, $('#invitation_form form').serialize(), null, 'script'
+
+						return false
+					'Cancel': ->
+						$(this).dialog('close');
+
+		return false
+# # Objects:
+# math =
+#  root:   Math.sqrt
+#  square: square
+#  cube:   (x) -> x * square x
+###
+$('#invitation_form').dialog
+	{ height: 300, width: 600, modal: true,
+	buttons:
+		'Share': ->
+			console.log 'sharing',
+		'Cancel': ->
+			console.log 'cancel' }
+
+			$( "#invitation_form" ).dialog({ 
+    height: 300, 
+    width: 600, 
+    modal: true, 
+    buttons: { 
+        //First button 
+        "Share": function() { 
+            //get the url to post the form data to 
+            var post_url = $("#invitation_form form").attr("action"); 
+              
+            //serialize the form data and post it the url with ajax 
+            $.post(post_url,$("#invitation_form form").serialize(), null, "script"); 
+              
+            return false; 
+        }, 
+        //Second button 
+        Cancel: function() { 
+            $( this ).dialog( "close" ); 
+        } 
+    }, 
+    close: function() { 
+  
+    } 
+});
+
+###
+###
+		$('#invitation_form').dialog({
+			height: 300,
+			width: 600,
+			modal: true,
+			buttons: {}
+	
+			})
+###

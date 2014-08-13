@@ -91,6 +91,6 @@ class FoldersController < ApplicationController
     def folder_params
       #ap params
 
-      params.require(:folder).permit(:name, :parent_id, :user_id)
+      params.require(:folder).permit(:parent_id, :user_id)
     end
 end

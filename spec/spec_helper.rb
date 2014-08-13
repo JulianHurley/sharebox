@@ -17,7 +17,9 @@ require 'capybara/rspec'
 require 'factory_girl'
 require 'devise'
 require 'database_cleaner'
+
 require 'support/helpers/controller_helpers'
+
 def sign_up
   visit '/users/sign_up'
   fill_in 'user_name', with: 'name'
@@ -31,6 +33,10 @@ def upload_file
   click_link 'Upload File'
   attach_file 'asset_uploaded_file', '/Users/julianhurley/Desktop/boxshare/spec/support/image/eve2.jpg'
   click_button 'Upload'
+end
+
+Dir[File.expand_path('importers/*.rb', File.dirname('___FILE___'))].each do |file|
+  require file
 end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

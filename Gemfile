@@ -17,6 +17,7 @@ group :test, :development, :production do
 	gem 'faker'
 	gem 'jquery-ui-rails'
 	gem 'font-awesome-rails'
+	gem 'js-routes'
 end
 
 group :test, :development do

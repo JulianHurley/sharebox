@@ -62,6 +62,7 @@ RSpec.describe FoldersController, :type => :controller do
       it { should set_flash_type_to :notice }
       it { should set_flash_message_to 'Folder was successfully updated.' }
       it { should filter_param('password') }
+      it { should filter_param('jimmy') }
     end
 
     describe 'session' do
@@ -70,6 +71,13 @@ RSpec.describe FoldersController, :type => :controller do
 
       it { should set_session_key(:foo).to('baz') }
       it { should have_user_id_of 1 }
+    end
+
+    describe 'cookies' do
+      before { request }
+      subject { cookies }
+
+      it {}
     end
 
     describe 'database' do
